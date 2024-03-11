@@ -1,12 +1,14 @@
-import { Controller, Get, Delete, Post, Put, Param, Body } from '@nestjs/common';
+import { Controller, Get, Delete, Post, Put, Param, Body, Header, HttpCode } from '@nestjs/common';
 import { EjemploDto } from 'src/dto/ejemplo.dto';
 import { EjemploInterface } from 'src/interfaces/ejemplo_interface';
 
 @Controller('ejemplo')
 export class EjemploController {
     @Get()
-    metodoGet() {
-        return {valor: "algo"};
+    @Header('cabecero_alan','tamil.cl')
+    @HttpCode(204)
+    metodoGet():EjemploInterface {
+        return {estado: "ok", mensaje: "Hola desde interface"};
     }
     // @Get()
     // metodoGet() {
