@@ -1,15 +1,30 @@
 import { Controller, Get, Delete, Post, Put, Param, Body, Header, HttpCode } from '@nestjs/common';
 import { EjemploDto } from 'src/dto/ejemplo.dto';
 import { EjemploInterface } from 'src/interfaces/ejemplo_interface';
+import { EjemploService } from 'src/servicios/ejemplo/ejemplo.service';
 
 @Controller('ejemplo')
 export class EjemploController {
-    @Get()
-    @Header('cabecero_alan','tamil.cl')
-    @HttpCode(204)
-    metodoGet():EjemploInterface {
-        return {estado: "ok", mensaje: "Hola desde interface"};
+
+    constructor(private servicio: EjemploService) {
+
     }
+
+
+    @Get()
+    @Header('cabecero_alan', 'tamil.cl')
+    metodoGet() {
+        return this.servicio.getTexto("Alan");
+    }
+
+
+
+    // @Get()
+    // @Header('cabecero_alan', 'tamil.cl')
+    // @HttpCode(200)
+    // metodoGet(): EjemploInterface {
+    //     return { estado: "ok", mensaje: "Hola desde interface" };
+    // }
     // @Get()
     // metodoGet() {
     //     return "Hola desde GET";
